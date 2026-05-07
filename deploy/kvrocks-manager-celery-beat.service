@@ -1,0 +1,19 @@
+[Unit]
+Description=KVrocks Manager Celery Beat Scheduler
+After=network.target kvrocks-manager-celery.service
+
+[Service]
+Type=simple
+User=kvrocks
+Group=kvrocks
+WorkingDirectory=/opt/kvrocks-manager/backend
+Environment="PATH=/opt/kvrocks-manager/backend/venv/bin"
+EnvironmentFile=/opt/kvrocks-manager/backend/.env
+ExecStart=/opt/kvrocks-manager/backend/venv/bin/celery -A app.tasks.monitor beat \
+    --loglevel=info \
+    --logfile=/var/log/kvrocks-manager/celery-beat.log
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,792 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+// ── 1. CSS Custom Properties ──────────────────────────────────
+
+:root {
+  --kv-bg-root:       #f6f8fc;
+  --kv-bg-base:       #f6f8fc;
+  --kv-bg-elevated:   #ffffff;
+  --kv-bg-overlay:    #ffffff;
+  --kv-bg-input:      #ffffff;
+
+  --kv-border-subtle:  #e5eaf2;
+  --kv-border-default: #d7deea;
+  --kv-border-strong:  #c5cedf;
+  --kv-border-glow:    rgba(91, 108, 255, 0.25);
+
+  --kv-text-primary:   #0f172a;
+  --kv-text-secondary: #475569;
+  --kv-text-tertiary:  #94a3b8;
+  --kv-text-inverse:   #f8fafc;
+
+  --kv-accent:         #5b6cff;
+  --kv-accent-hover:   #4a5bff;
+  --kv-accent-muted:   rgba(91, 108, 255, 0.12);
+  --kv-accent-faint:   rgba(91, 108, 255, 0.06);
+  --kv-accent-text:    #3f51ff;
+
+  --kv-accent-2:        #35f0c7;
+  --kv-accent-2-muted:  rgba(53, 240, 199, 0.12);
+
+  --kv-success:        #22c55e;
+  --kv-success-muted:  rgba(34, 197, 94, 0.12);
+  --kv-warning:        #f59e0b;
+  --kv-warning-muted:  rgba(245, 158, 11, 0.12);
+  --kv-danger:         #ef4444;
+  --kv-danger-muted:   rgba(239, 68, 68, 0.12);
+  --kv-info:           #64748b;
+  --kv-info-muted:     rgba(100, 116, 139, 0.12);
+
+  --kv-sidebar-bg:          #0b1020;
+  --kv-sidebar-hover:       rgba(248, 250, 252, 0.06);
+  --kv-sidebar-active-bg:   rgba(91, 108, 255, 0.18);
+  --kv-sidebar-text:        rgba(226, 232, 240, 0.72);
+  --kv-sidebar-text-hover:  rgba(248, 250, 252, 0.92);
+  --kv-sidebar-text-active: #f8fafc;
+
+  --kv-shadow-sm:   0 1px 2px rgba(15, 23, 42, 0.06);
+  --kv-shadow-md:   0 10px 30px rgba(15, 23, 42, 0.10);
+  --kv-shadow-lg:   0 18px 46px rgba(15, 23, 42, 0.14);
+  --kv-shadow-glow: 0 0 24px rgba(91, 108, 255, 0.10);
+
+  --kv-ease:        cubic-bezier(0.2, 0.8, 0.2, 1);
+  --kv-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --kv-dur-fast:    120ms;
+  --kv-dur-base:    180ms;
+  --kv-dur-slow:    260ms;
+
+  --kv-radius-sm:   10px;
+  --kv-radius-md:   12px;
+  --kv-radius-lg:   16px;
+  --kv-radius-full: 9999px;
+
+  --kv-font-body: 'Inter', 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, sans-serif;
+  --kv-font-display: 'Space Grotesk', 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+  --kv-font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+}
+
+
+// ── 2. Element Plus Variable Overrides ────────────────────────
+
+:root {
+  // Primary
+  --el-color-primary:         var(--kv-accent);
+  --el-color-primary-light-3: rgba(91, 108, 255, 0.45);
+  --el-color-primary-light-5: rgba(91, 108, 255, 0.30);
+  --el-color-primary-light-7: rgba(91, 108, 255, 0.18);
+  --el-color-primary-light-8: rgba(91, 108, 255, 0.12);
+  --el-color-primary-light-9: rgba(91, 108, 255, 0.06);
+  --el-color-primary-dark-2:  #3f51ff;
+
+  // Semantic
+  --el-color-success: var(--kv-success);
+  --el-color-warning: var(--kv-warning);
+  --el-color-danger:  var(--kv-danger);
+  --el-color-info:    var(--kv-info);
+
+  // Background
+  --el-bg-color:         var(--kv-bg-elevated);
+  --el-bg-color-page:    var(--kv-bg-base);
+  --el-bg-color-overlay: var(--kv-bg-overlay);
+
+  // Text
+  --el-text-color-primary:     var(--kv-text-primary);
+  --el-text-color-regular:     var(--kv-text-secondary);
+  --el-text-color-secondary:   var(--kv-text-tertiary);
+  --el-text-color-placeholder: var(--kv-text-tertiary);
+  --el-text-color-disabled:    rgba(148, 163, 184, 0.7);
+
+  // Border
+  --el-border-color:         var(--kv-border-default);
+  --el-border-color-light:   var(--kv-border-subtle);
+  --el-border-color-lighter: var(--kv-border-subtle);
+  --el-border-color-dark:    var(--kv-border-strong);
+  --el-border-color-hover:   rgba(91, 108, 255, 0.7);
+
+  // Fill
+  --el-fill-color:         rgba(15, 23, 42, 0.04);
+  --el-fill-color-light:   rgba(15, 23, 42, 0.03);
+  --el-fill-color-lighter: rgba(15, 23, 42, 0.02);
+  --el-fill-color-extra-light: rgba(15, 23, 42, 0.015);
+  --el-fill-color-blank:   var(--kv-bg-elevated);
+  --el-fill-color-dark:    rgba(15, 23, 42, 0.06);
+
+  // Font
+  --el-font-family: var(--kv-font-body);
+  --el-font-size-base: 14px;
+
+  // Radius
+  --el-border-radius-base:  var(--kv-radius-md);
+  --el-border-radius-small: var(--kv-radius-sm);
+  --el-border-radius-round: var(--kv-radius-full);
+
+  // Shadow
+  --el-box-shadow:       var(--kv-shadow-md);
+  --el-box-shadow-light: var(--kv-shadow-sm);
+  --el-box-shadow-dark:  var(--kv-shadow-lg);
+
+  // Mask
+  --el-mask-color:       rgba(15, 23, 42, 0.55);
+  --el-mask-color-extra-light: rgba(15, 23, 42, 0.28);
+
+  // Disabled
+  --el-disabled-bg-color:    rgba(15, 23, 42, 0.04);
+  --el-disabled-text-color:  rgba(148, 163, 184, 0.8);
+  --el-disabled-border-color: rgba(15, 23, 42, 0.08);
+
+  // Component specifics
+  --el-card-bg-color:     var(--kv-bg-elevated);
+  --el-card-border-color: var(--kv-border-subtle);
+
+  --el-dialog-bg-color:     var(--kv-bg-elevated);
+  --el-dialog-border-radius: var(--kv-radius-lg);
+
+  --el-table-bg-color:             transparent;
+  --el-table-tr-bg-color:          transparent;
+  --el-table-header-bg-color:      var(--kv-bg-overlay);
+  --el-table-row-hover-bg-color:   rgba(91, 108, 255, 0.06);
+  --el-table-border-color:         var(--kv-border-subtle);
+  --el-table-header-text-color:    var(--kv-text-secondary);
+  --el-table-text-color:           var(--kv-text-primary);
+
+  --el-menu-bg-color:       transparent;
+  --el-menu-hover-bg-color: var(--kv-sidebar-hover);
+  --el-menu-active-color:   var(--kv-sidebar-text-active);
+  --el-menu-text-color:     var(--kv-sidebar-text);
+
+  --el-input-bg-color: var(--kv-bg-input);
+  --el-input-text-color: var(--kv-text-primary);
+  --el-input-border-color: rgba(15, 23, 42, 0.10);
+
+  --el-switch-on-color: var(--kv-accent);
+
+  --el-message-bg-color: var(--kv-bg-overlay);
+  --el-message-border-color: var(--kv-border-subtle);
+  --el-messagebox-title-color: var(--kv-text-primary);
+
+  --el-loading-spinner-size: 42px;
+  --el-loading-fullscreen-spinner-size: 50px;
+
+  --el-color-white: #ffffff;
+}
+
+
+// ── 3. Global Reset & Typography ──────────────────────────────
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #app {
+  height: 100%;
+  background: var(--kv-bg-root);
+  color: var(--kv-text-primary);
+  font-family: var(--kv-font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  position: relative;
+  z-index: 1;
+}
+
+::selection {
+  background: rgba(91, 108, 255, 0.22);
+  color: var(--kv-text-primary);
+}
+
+a {
+  color: var(--kv-accent-text);
+  text-decoration: none;
+}
+
+.font-mono {
+  font-family: var(--kv-font-mono);
+}
+
+.font-display {
+  font-family: var(--kv-font-display);
+}
+
+.kv-num {
+  font-family: var(--kv-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.kv-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.page-header h1,
+.page-header h2 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--kv-text-primary);
+}
+
+.page-header .page-subtitle {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--kv-text-tertiary);
+}
+
+.content-card {
+  border-radius: var(--kv-radius-lg);
+  box-shadow: var(--kv-shadow-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+// ── 4. Noise Texture Overlay ──────────────────────────────────
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.018;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+
+// ── 5. Scrollbar ──────────────────────────────────────────────
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--kv-border-default);
+  border-radius: 3px;
+
+  &:hover {
+    background: var(--kv-border-strong);
+  }
+}
+
+
+// ── 6. Animation Keyframes ────────────────────────────────────
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes accentBreath {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 0.75; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.15); }
+}
+
+// Stagger utility — apply .stagger-item to children
+.stagger-enter {
+  > .stagger-item,
+  > * {
+    opacity: 0;
+    animation: fadeSlideUp 400ms var(--kv-ease) forwards;
+
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{($i - 1) * 60}ms;
+      }
+    }
+  }
+}
+
+
+// ── 7. Route Transition ───────────────────────────────────────
+
+.page-enter-active {
+  transition: opacity 200ms var(--kv-ease), transform 200ms var(--kv-ease);
+}
+
+.page-leave-active {
+  transition: opacity 150ms var(--kv-ease);
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.page-leave-to {
+  opacity: 0;
+}
+
+
+// ── 8. Element Plus Component Overrides ───────────────────────
+
+// --- Cards ---
+.el-card {
+  background: var(--kv-bg-elevated);
+  border: 1px solid var(--kv-border-subtle);
+  border-radius: var(--kv-radius-md);
+  transition: border-color var(--kv-dur-base) var(--kv-ease),
+              box-shadow var(--kv-dur-base) var(--kv-ease);
+
+  &:hover {
+    border-color: var(--kv-border-default);
+  }
+
+  .el-card__header {
+    border-bottom: 1px solid var(--kv-border-subtle);
+    color: var(--kv-text-primary);
+    font-weight: 600;
+  }
+}
+
+// --- Tags (dark-aware) ---
+.el-tag {
+  border: none;
+
+  &--success {
+    background: var(--kv-success-muted);
+    color: var(--kv-success);
+  }
+  &--warning {
+    background: var(--kv-warning-muted);
+    color: var(--kv-warning);
+  }
+  &--danger {
+    background: var(--kv-danger-muted);
+    color: var(--kv-danger);
+  }
+  &--info {
+    background: var(--kv-info-muted);
+    color: var(--kv-info);
+  }
+  &--primary {
+    background: var(--kv-accent-muted);
+    color: var(--kv-accent);
+  }
+}
+
+// --- Input focus glow ---
+.el-input__wrapper,
+.el-textarea__inner {
+  background-color: var(--kv-bg-input) !important;
+  box-shadow: 0 0 0 1px var(--kv-border-subtle) inset !important;
+  transition: box-shadow var(--kv-dur-base) var(--kv-ease) !important;
+
+  &:hover {
+    box-shadow: 0 0 0 1px var(--kv-border-default) inset !important;
+  }
+
+  &:focus-within,
+  &.is-focus {
+    box-shadow: 0 0 0 1px var(--kv-accent) inset,
+                0 0 0 3px var(--kv-accent-faint) !important;
+  }
+}
+
+.el-textarea__inner {
+  color: var(--kv-text-primary);
+}
+
+// --- Select dropdown ---
+.el-select-dropdown {
+  background: var(--kv-bg-overlay) !important;
+  border: 1px solid var(--kv-border-subtle) !important;
+}
+
+.el-select-dropdown__item {
+  color: var(--kv-text-secondary);
+
+  &:hover, &.hover {
+    background: var(--kv-accent-faint);
+    color: var(--kv-text-primary);
+  }
+
+  &.selected {
+    color: var(--kv-accent);
+    font-weight: 600;
+  }
+}
+
+// --- Button ---
+.el-button--primary {
+  background: var(--kv-accent);
+  border-color: var(--kv-accent);
+  color: var(--kv-text-inverse);
+  font-weight: 500;
+  transition: all var(--kv-dur-fast) var(--kv-ease);
+
+  &:hover, &:focus {
+    background: var(--kv-accent-hover);
+    border-color: var(--kv-accent-hover);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.el-button--default {
+  background: rgba(15, 23, 42, 0.02);
+  border-color: var(--kv-border-default);
+  color: var(--kv-text-secondary);
+
+  &:hover, &:focus {
+    background: rgba(91, 108, 255, 0.06);
+    border-color: var(--kv-border-strong);
+    color: var(--kv-text-primary);
+  }
+}
+
+.el-button--success {
+  &:hover, &:focus {
+    transform: translateY(-1px);
+  }
+}
+
+.el-button--warning {
+  &:hover, &:focus {
+    transform: translateY(-1px);
+  }
+}
+
+.el-button--danger {
+  &:hover, &:focus {
+    transform: translateY(-1px);
+  }
+}
+
+// --- Table ---
+.el-table {
+  --el-table-current-row-bg-color: var(--kv-accent-faint);
+
+  th.el-table__cell {
+    background: var(--kv-bg-overlay) !important;
+    color: var(--kv-text-secondary);
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  td.el-table__cell {
+    border-bottom-color: var(--kv-border-subtle);
+    transition: background var(--kv-dur-fast) var(--kv-ease);
+  }
+
+  .el-table__row:hover > td.el-table__cell {
+    background: rgba(91, 108, 255, 0.06) !important;
+  }
+}
+
+// --- Dialog ---
+.el-dialog {
+  background: var(--kv-bg-elevated);
+  border: 1px solid var(--kv-border-subtle);
+  border-radius: var(--kv-radius-lg);
+  box-shadow: var(--kv-shadow-lg);
+
+  .el-dialog__header {
+    border-bottom: 1px solid var(--kv-border-subtle);
+    padding-bottom: 16px;
+  }
+
+  .el-dialog__title {
+    color: var(--kv-text-primary);
+    font-weight: 600;
+  }
+
+  .el-dialog__footer {
+    border-top: 1px solid var(--kv-border-subtle);
+    padding-top: 16px;
+  }
+}
+
+.el-overlay {
+  backdrop-filter: blur(4px);
+}
+
+// --- Menu (sidebar) ---
+.el-menu {
+  border-right: none !important;
+
+  .el-menu-item,
+  .el-sub-menu__title {
+    color: var(--kv-sidebar-text);
+    border-radius: 6px;
+    margin: 2px 8px;
+    height: 44px;
+    line-height: 44px;
+    transition: all var(--kv-dur-fast) var(--kv-ease);
+
+    &:hover {
+      background: var(--kv-sidebar-hover) !important;
+      color: var(--kv-sidebar-text-hover);
+    }
+
+    .el-icon {
+      color: inherit;
+    }
+  }
+
+  .el-menu-item.is-active {
+    background: var(--kv-sidebar-active-bg) !important;
+    color: var(--kv-sidebar-text-active);
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 3px;
+      background: var(--kv-accent);
+      border-radius: 0 3px 3px 0;
+    }
+  }
+
+  .el-sub-menu.is-active {
+    > .el-sub-menu__title {
+      color: var(--kv-sidebar-text-active);
+    }
+  }
+}
+
+// --- Form ---
+.el-form-item__label {
+  color: var(--kv-text-secondary) !important;
+}
+
+// --- Breadcrumb ---
+.el-breadcrumb__inner {
+  color: var(--kv-text-tertiary) !important;
+}
+
+.el-breadcrumb__item:last-child .el-breadcrumb__inner {
+  color: var(--kv-text-secondary) !important;
+}
+
+.el-breadcrumb__separator {
+  color: var(--kv-text-tertiary) !important;
+}
+
+// --- Pagination ---
+.el-pagination {
+  --el-pagination-bg-color: var(--kv-bg-overlay);
+  --el-pagination-text-color: var(--kv-text-secondary);
+  --el-pagination-button-disabled-bg-color: var(--kv-bg-elevated);
+
+  .el-pager li {
+    background: var(--kv-bg-overlay);
+    color: var(--kv-text-secondary);
+
+    &.is-active {
+      background: var(--kv-accent-muted);
+      color: var(--kv-accent);
+    }
+  }
+}
+
+// --- Loading ---
+.el-loading-mask {
+  background-color: rgba(246, 248, 252, 0.65) !important;
+}
+
+// --- Empty ---
+.el-empty__description p {
+  color: var(--kv-text-tertiary);
+}
+
+// --- Result ---
+.el-result__title p {
+  color: var(--kv-text-primary);
+}
+
+.el-result__subtitle p {
+  color: var(--kv-text-secondary);
+}
+
+// --- Dropdown ---
+.el-dropdown-menu {
+  background: var(--kv-bg-overlay) !important;
+  border: 1px solid var(--kv-border-subtle) !important;
+
+  .el-dropdown-menu__item {
+    color: var(--kv-text-secondary);
+
+    &:hover {
+      background: var(--kv-accent-faint);
+      color: var(--kv-text-primary);
+    }
+  }
+}
+
+// --- Message ---
+.el-message {
+  background: var(--kv-bg-overlay) !important;
+  border-color: var(--kv-border-subtle) !important;
+
+  .el-message__content {
+    color: var(--kv-text-primary) !important;
+  }
+}
+
+// --- MessageBox ---
+.el-message-box {
+  background: var(--kv-bg-elevated) !important;
+  border: 1px solid var(--kv-border-subtle) !important;
+
+  .el-message-box__title {
+    color: var(--kv-text-primary) !important;
+  }
+
+  .el-message-box__message {
+    color: var(--kv-text-secondary) !important;
+  }
+}
+
+// --- Notification ---
+.el-notification {
+  background: var(--kv-bg-overlay) !important;
+  border-color: var(--kv-border-subtle) !important;
+
+  .el-notification__title {
+    color: var(--kv-text-primary) !important;
+  }
+
+  .el-notification__content {
+    color: var(--kv-text-secondary) !important;
+  }
+}
+
+// --- Collapse / Accordion ---
+.el-collapse-item__header {
+  background: var(--kv-bg-elevated);
+  color: var(--kv-text-primary);
+  border-bottom-color: var(--kv-border-subtle);
+}
+
+.el-collapse-item__wrap {
+  background: var(--kv-bg-elevated);
+  border-bottom-color: var(--kv-border-subtle);
+}
+
+// --- Checkbox ---
+.el-checkbox__label {
+  color: var(--kv-text-secondary);
+}
+
+// --- Radio ---
+.el-radio__label {
+  color: var(--kv-text-secondary);
+}
+
+// --- Progress ---
+.el-progress-bar__outer {
+  background-color: var(--kv-bg-input);
+}
+
+// --- Alert component ---
+.el-alert {
+  border: 1px solid var(--kv-border-subtle);
+
+  &--success {
+    background: var(--kv-success-muted);
+  }
+  &--warning {
+    background: var(--kv-warning-muted);
+  }
+  &--error {
+    background: var(--kv-danger-muted);
+  }
+  &--info {
+    background: var(--kv-info-muted);
+  }
+}
+
+// --- Switch ---
+.el-switch {
+  .el-switch__core {
+    border-color: var(--kv-border-default);
+    background: var(--kv-bg-input);
+  }
+}
+
+// --- Badge ---
+.el-badge__content {
+  border: none;
+}
+
+// --- Popover ---
+.el-popover {
+  background: var(--kv-bg-overlay) !important;
+  border: 1px solid var(--kv-border-subtle) !important;
+}
+
+// --- InputNumber ---
+.el-input-number {
+  .el-input-number__decrease,
+  .el-input-number__increase {
+    background: var(--kv-bg-overlay);
+    border-color: var(--kv-border-subtle);
+    color: var(--kv-text-secondary);
+
+    &:hover {
+      color: var(--kv-accent);
+    }
+  }
+}
