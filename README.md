@@ -147,16 +147,6 @@ This sets up:
 
 See `deploy/` directory for configuration files.
 
-## Development
-
-```bash
-# Run backend tests
-cd backend && pytest
-
-# Build frontend for production
-cd frontend && npm run build
-```
-
 ## License
 
 [Apache License 2.0](LICENSE)
