@@ -33,7 +33,7 @@ A full-stack web platform for managing [Apache KVrocks](https://github.com/apach
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/kvrocks-manager.git
+git clone https://github.com/Songdantes/kvrocks-manager.git
 cd kvrocks-manager
 
 # Configure environment
