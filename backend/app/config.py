@@ -14,7 +14,7 @@ class Settings(BaseSettings):
 
     # Database
     DATABASE_URL: str = "sqlite+aiosqlite:///./kvrocks_manager.db"
-    # For MySQL: mysql+pymysql://user:password@localhost:3306/kvrocks_manager
+    # For MySQL: mysql+aiomysql://user:password@localhost:3306/kvrocks_manager
 
     # JWT Authentication
     SECRET_KEY: str = os.getenv("SECRET_KEY", "fallback-only-for-dev")
