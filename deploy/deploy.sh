@@ -107,7 +107,7 @@ deploy_manual() {
         log_info "Creating backend .env file..."
         cat > .env << EOF
 DEBUG=false
-DATABASE_URL=mysql+pymysql://kvrocks:YOUR_DB_PASSWORD@localhost:3306/kvrocks_manager
+DATABASE_URL=mysql+aiomysql://kvrocks:YOUR_DB_PASSWORD@localhost:3306/kvrocks_manager
 SECRET_KEY=$(openssl rand -hex 32)
 REDIS_URL=redis://localhost:6379/0
 EOF
