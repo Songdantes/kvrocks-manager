@@ -2,7 +2,7 @@
 #
 # KVrocks Manager Production Deployment Script
 #
-# Usage: ./deploy.sh manual
+# Usage: ./deploy.sh
 #
 
 set -e
@@ -113,18 +113,4 @@ EOF
 }
 
 # Main
-case "${1:-docker}" in
-    docker)
-        deploy_docker
-        ;;
-    manual)
-        deploy_manual
-        ;;
-    *)
-        echo "Usage: $0 [docker|manual]"
-        echo ""
-        echo "  docker  - Deploy using Docker Compose (default)"
-        echo "  manual  - Deploy manually with systemd services"
-        exit 1
-        ;;
-esac
+deploy_manual
