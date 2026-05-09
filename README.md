@@ -92,6 +92,25 @@ Services will be available at:
 
 Default login: `admin` / `admin123`
 
+<<<<<<< HEAD
+=======
+### Manual Deployment
+
+> **Note:** This project depends on Nginx, MySQL, and Redis. Please install and configure them manually before proceeding.
+
+```bash
+./deploy/deploy.sh manual
+```
+
+This sets up:
+- Python venv with gunicorn
+- Systemd service for the backend
+- Nginx reverse proxy configuration
+- Frontend static build
+
+See `deploy/` directory for configuration files.
+
+>>>>>>> a087710 (modify README.md)
 ### Local Development
 
 **Backend:**
