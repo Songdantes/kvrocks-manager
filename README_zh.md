@@ -92,8 +92,6 @@ docker compose up -d
 
 默认登录账号：`admin` / `admin123`
 
-<<<<<<< HEAD
-=======
 ### 手动部署
 
 > **注意：** 本项目依赖 Nginx、MySQL 和 Redis，请自行手动安装部署。
@@ -110,7 +108,6 @@ docker compose up -d
 
 详见 `deploy/` 目录下的配置文件。
 
->>>>>>> a087710 (modify README.md)
 ### 本地开发
 
 **后端：**
@@ -187,26 +184,6 @@ npm run dev  # 在 :3000 启动，/api 代理到 :8000
 | `readonly` | 所有资源只读访问 |
 
 可创建自定义角色，任意组合权限。
-
-## 部署
-
-### Docker Compose
-
-参见 `docker-compose.yml` 了解完整部署配置。需要 `.env` 文件配置数据库密码和密钥。
-
-### 手动部署
-
-```bash
-./deploy/deploy.sh manual
-```
-
-将自动配置：
-- 带 gunicorn 的 Python 虚拟环境
-- 后端 Systemd 服务
-- Nginx 反向代理
-- 前端静态文件构建
-
-详见 `deploy/` 目录下的配置文件。
 
 ## 许可证
 

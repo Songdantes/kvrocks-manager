@@ -92,8 +92,6 @@ Services will be available at:
 
 Default login: `admin` / `admin123`
 
-<<<<<<< HEAD
-=======
 ### Manual Deployment
 
 > **Note:** This project depends on Nginx, MySQL, and Redis. Please install and configure them manually before proceeding.
@@ -110,7 +108,6 @@ This sets up:
 
 See `deploy/` directory for configuration files.
 
->>>>>>> a087710 (modify README.md)
 ### Local Development
 
 **Backend:**
@@ -187,26 +184,6 @@ Built-in roles with configurable permissions:
 | `readonly` | Read-only access to all resources |
 
 Custom roles can be created with any combination of permissions.
-
-## Deployment
-
-### Docker Compose
-
-See `docker-compose.yml` for the full stack setup. Requires a `.env` file with database passwords and secret key.
-
-### Manual Deployment
-
-```bash
-./deploy/deploy.sh manual
-```
-
-This sets up:
-- Python venv with gunicorn
-- Systemd service for the backend
-- Nginx reverse proxy
-- Frontend static build
-
-See `deploy/` directory for configuration files.
 
 ## License
 
