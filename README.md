@@ -1,5 +1,7 @@
 # KVrocks Manager
 
+> **🌐 English | [中文文档](README_zh.md)**
+
 A full-stack web platform for managing [Apache KVrocks](https://github.com/apache/kvrocks) clusters. Supports cluster CRUD, node management, scaling operations, KVrocks Controller integration, and role-based access control.
 
 ## Features
@@ -30,6 +32,45 @@ A full-stack web platform for managing [Apache KVrocks](https://github.com/apach
 ## Quick Start
 
 ### Docker Compose (Recommended)
+
+<details>
+<summary><strong>Install Docker (if not installed)</strong></summary>
+
+```bash
+# Install yum-utils
+yum install -y yum-utils
+
+# Add Docker repo (Alibaba mirror)
+yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+
+# Install Docker
+yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+# Start and enable
+systemctl start docker && systemctl enable docker
+
+# Verify
+docker --version
+docker compose version
+```
+
+If Docker Hub is slow, configure registry mirrors:
+
+```bash
+mkdir -p /etc/docker
+cat > /etc/docker/daemon.json <<'EOF'
+{
+  "registry-mirrors": [
+    "https://mirror.ccs.tencentyun.com",
+    "https://docker.m.daocloud.io",
+    "https://hub-mirror.c.163.com"
+  ]
+}
+EOF
+systemctl daemon-reload && systemctl restart docker
+```
+
+</details>
 
 ```bash
 # Clone the repository
@@ -71,6 +112,7 @@ cd frontend
 npm install
 npm run dev  # Runs on :3000, proxies /api to :8000
 ```
+
 ## Configuration
 
 All backend configuration is environment-driven via `backend/app/config.py`. Key variables:
