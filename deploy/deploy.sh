@@ -2,7 +2,7 @@
 #
 # KVrocks Manager Production Deployment Script
 #
-# Usage: ./deploy.sh [docker|manual]
+# Usage: ./deploy.sh manual
 #
 
 set -e
@@ -28,45 +28,6 @@ log_error() {
     echo -e "${RED}[ERROR]${NC} $1"
 }
 
-# Deploy using Docker Compose
-deploy_docker() {
-    log_info "Deploying with Docker Compose..."
-
-    cd "$PROJECT_DIR"
-
-    # Check if .env exists
-    if [ ! -f .env ]; then
-        log_warn ".env file not found, copying from .env.example"
-        cp .env.example .env
-        log_warn "Please edit .env file with your configuration"
-        exit 1
-    fi
-
-    # Build and start containers
-    docker-compose build
-    docker-compose up -d
-
-    log_info "Waiting for services to start..."
-    sleep 10
-
-    # Health check
-    if curl -sf http://localhost:8000/health > /dev/null; then
-        log_info "Backend is healthy"
-    else
-        log_error "Backend health check failed"
-        docker-compose logs backend
-        exit 1
-    fi
-
-    log_info "Deployment complete!"
-    echo ""
-    echo "Services:"
-    echo "  - Frontend: http://localhost"
-    echo "  - Backend API: http://localhost:8000"
-    echo "  - API Docs: http://localhost:8000/docs"
-    echo ""
-    echo "Default login: admin / admin123"
-}
 
 # Deploy manually without Docker
 deploy_manual() {
@@ -135,16 +96,15 @@ EOF
     # Copy nginx config
     if [ -d /etc/nginx ]; then
         log_info "Copying nginx configuration..."
-        cp "$PROJECT_DIR/deploy/nginx.conf" /etc/nginx/sites-available/kvrocks-manager
-        ln -sf /etc/nginx/sites-available/kvrocks-manager /etc/nginx/sites-enabled/
-        log_warn "Please edit /etc/nginx/sites-available/kvrocks-manager with your domain and SSL certificates"
+        cp "$PROJECT_DIR/deploy/nginx.conf" /etc/nginx/conf.d/kvrocks-manager.conf
+        log_warn "Please edit /etc/nginx/conf.d/kvrocks-manager.conf with your domain and SSL certificates"
     fi
 
     log_info "Manual deployment complete!"
     echo ""
     echo "Next steps:"
     echo "  1. Configure MySQL database and update $INSTALL_DIR/backend/.env"
-    echo "  2. Configure nginx with your domain: /etc/nginx/sites-available/kvrocks-manager"
+    echo "  2. Configure nginx with your domain: /etc/nginx/conf.d/kvrocks-manager.conf"
     echo "  3. Start services:"
     echo "     systemctl start kvrocks-manager"
     echo "     systemctl restart nginx"
