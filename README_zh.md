@@ -97,7 +97,7 @@ docker compose up -d
 > **注意：** 本项目依赖 Nginx、MySQL 和 Redis，请自行手动安装部署。
 
 ```bash
-./deploy/deploy.sh manual
+./deploy/deploy.sh 
 ```
 
 将自动配置：

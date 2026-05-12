@@ -97,7 +97,7 @@ Default login: `admin` / `admin123`
 > **Note:** This project depends on Nginx, MySQL, and Redis. Please install and configure them manually before proceeding.
 
 ```bash
-./deploy/deploy.sh manual
+./deploy/deploy.sh 
 ```
 
 This sets up:
